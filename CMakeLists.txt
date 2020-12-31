@@ -23,9 +23,15 @@ CPMAddPackage(
   NAME metaf
   GIT_REPOSITORY https://gitlab.com/sthagen/metaf.git
   VERSION 5.6.2                                 
-  # 5.6.2 is not released yet, so use the latest approved commit
+  # 5.6.2 is not released yet by Nick Naumenko (upstream), so use the latest approved commit
   GIT_TAG de0268e41b0097eb782e7ae6cf14fc04e4525d5d 
 )
+
+if(metaf_ADDED)
+  add_library(metaf INTERFACE)
+  target_include_directories(metaf INTERFACE ${metaf_SOURCE_DIR}/include/)
+  message("Added ${metaf_SOURCE_DIR}/include/ as include")
+endif()
 
 # ---- Create executable ----
 
